@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The iris genus includes three species of flowers: setosa, versicolor and virginica. In this example project, we will examine a dataset that contains measurements of the petal length and width as well as the sepal length and width of 150 irises. The goal is to determine whether one can use one or more of these attributes to uniquely identify the species of an iris.
+The iris genus includes three species of flowers: setosa, versicolor and virginica. In this example project, we will examine a dataset that contains measurements of the petal length and width as well as the sepal length and width of 150 irises. The goal is to determine whether one can use one or more of these features to uniquely identify the species of an iris.
 
 The dataset was first published by R. A. Fisher:<br />
 _Fisher, R. A. (1936) The use of multiple measurements in taxonomic problems. Annals of Eugenics, 7, Part II, 179–188._ <br /> 
@@ -35,6 +35,6 @@ _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the Amer
   By Frank Mayfield - originally posted to Flickr as Iris virginica shrevei BLUE FLAG, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=9805580 (15.07.2025)
 </div>
 
-## Inital Analysis of the Data
+## Choosing a Feature to Examine
 
 wip

@@ -42,7 +42,7 @@ _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the Amer
 ## Choosing a Feature to Examine
 
 <p align="justify"> 
-In order to identify the species of a given iris, one ideally wants to only do as few measurements as necessary. Hence, we will start by only examining a single feature. In order to determine what feature one should pick, one can take a look on how the features are distributed among the different species of iris, as shown in Fig. 4. For both the sepal lengths and widths, there is a considerable overlap between the three different iris, making them unsuited for identifying the species. The petal lengths and widths fare better in that regard, though there is still an overlap between versicolor and virginica.
+In order to identify the species of a given iris, one ideally wants to only do as few measurements as necessary. In order to determine what feature one should pick, one can take a look on how the features are distributed for the different species of iris as shown in Fig. 4. For both the sepal lengths and widths, there is a considerable overlap between the three different iris, making them unsuited for identifying the species. The petal lengths and widths fare better in that regard, though there is still an overlap between versicolor and virginica.
 wip
 </p>
 

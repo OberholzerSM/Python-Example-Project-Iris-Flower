@@ -78,17 +78,44 @@ We can symmetrize our approach by simply taking the sum,
 
 $$ D(P,Q) = D_{KL}(P \parallel Q) + D_{KL}(Q \parallel P) \\: .  $$
 
+Furthermore, for two normal distributions the KL-divergence takes on the form,
+
+$$ D_{KL}(\mathcal{N}_1 \parallel \mathcal{N}_2) = ln\\left(\frac{\sigma_2}{\sigma_1}\\right) + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2 \sigma_2^2} - \frac{1}{2} \\: . $$
+
 Next, we need to assign a probability distribution to the features. Based on the histograms in Fig. 4, we assume that the individual features are following a normal distribution $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$, where $I_i$ denotes a given iris species, $I_i \in \\{ \text{setosa, versicolor, virginica} \\}$. However, we also need to take into account the measurement error of our data: While the error is not directly specified, the measurements are only given up to one digit of precicion. We therefor assume that if for example the data denotes a petal width of 1.4 cm, that the "true" petal width lies somewhere within the range of 1.35 cm to 1.45 cm. For the likelihoods, this yields:
 
 $$ P[ Z = z | I_i ] = \int_{z-0.05}^{z+0.05} f(x|\mu_{I_i},\sigma_{I_i}) dx \\: , $$
 
-where $Z$ represents one of the four features taking on the value $z$ and where $f(x|\mu_{I_i},\sigma_{I_i})$ is the probability density function of $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$.
+where $Z$ represents one of the four features taking on the value $z$ and where $f(x|\mu_{I_i},\sigma_{I_i})$ is the probability density function of $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$. <br /> The resulting likelihood distributions can be seen in Fig. 5. As can be seen, they more or less simply follow along the histograms of Fig. 4.
 
 </p>
 
-## Determining the Posterior Distribution for a Single Variable
+<figure>
+  <p align="center">
+  <img src="/Images/02Likelihoods.png" width="500"/>
+  </p>
+  <figcaption>
+    <p align="center">
+    Fig. 5: Likelihood probability distributions for the four features.
+    </p>
+  </figcaption>
+</figure>
 
 <p align="justify"> 
+We can now determine the distance between the different likelihood distributions, summarized in the table below. As expected, for the sepal length and width the distances are rather small, making them unsuited for identifying the iris species. The petal length is optimal for differentiating between a setosa and the other two species, while the petal width is best suited for differentiating between a versicolor and a virginica. Since the distance between the versicolor and virginica distributions are always unfortunately small for all features, the major difficulty will always be to differeniate these two species. For setosa on the other hand, the distance to the other species for both the petal length and width is rather large, making it easy to identify a setosa either way. Hence, if one only wishes to measure a single feature per flower, the petal width should be chosen in order to best identify the species.
+</p>
+
+| Iris                  | Sepal Length  |  Sepal Width  |  Petal Length  |  Petal Width   |
+| -------------         | ------------- | ------------- |  ------------- |  ------------- |
+| setosa/versicolor     | 5.41          |  3.78         |   150.25       |   68.33        |
+| setosa/virginica      | 13.95         |  1.76         |   308.89       |   166.11       |
+| versicolor/virginica  | 1.41          |  0.41         |   6.57         |   9.74         |
+
+## Determining the Posterior Distributions for a Single Variable
+
+<p align="justify"> 
+
+
   
 </p>
 

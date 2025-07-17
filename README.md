@@ -14,28 +14,40 @@ The data itself was collected by E. Anderson:<br />
 _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5._ 
 
 <figure>
+  <p align="center">
   <img src="/Images/IrisSetosa.jpg" width="150"/>
+  </p>
   <figcaption>
+    <p align="center">
     Fig. 1: Iris Setosa.<br />
     CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=170298 (15.07.2025)
+    </p>
   </figcaption>
 </figure>
 
 <figure>
+  <p align="center">
   <img src="/Images/IrisVersicolor.jpg" width="150"/>
+  </p>
   <figcaption>
+    <p align="center">
     Fig. 2: Iris Versicolor.<br />
     By No machine-readable author provided. Dlanglois assumed (based on copyright claims). - No machine-readable source provided. <br />
     Own work assumed (based on copyright claims)., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=248095 (15.07.2025)
+    </p>
   </figcaption>
 </figure>
 
 <figure>
+  <p align="center">
   <img src="/Images/IrisVirginica.jpg" width="150"/>
+  </p>
   <figcaption>
+    <p align="center">
     Fig. 3: Iris Virginica.<br />
     By Frank Mayfield - originally posted to Flickr as Iris virginica shrevei BLUE FLAG, CC BY-SA 2.0,<br />
     https://commons.wikimedia.org/w/index.php?curid=9805580 (15.07.2025)
+    </p>
   </figcaption>
 </figure>
 
@@ -43,25 +55,41 @@ _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the Amer
 
 <p align="justify"> 
 In order to identify the species of a given iris, one ideally wants to only do as few measurements as necessary. In order to determine what feature one should pick, one can take a look on how the features are distributed for the different species of iris as shown in Fig. 4. For both the sepal lengths and widths, there is a considerable overlap between the three different iris, making them unsuited for identifying the species. The petal lengths and widths fare better in that regard, though there is still an overlap between versicolor and virginica.
-wip
 </p>
 
 <figure>
+  <p align="center">
   <img src="/Images/01IrisHistograms.png" width="500"/>
+  </p>
   <figcaption>
+    <p align="center">
     Fig. 4: Histograms displaying the distribution of the four measured iris features.
+    </p>
   </figcaption>
 </figure>
+
+<p align="justify"> 
+
+In order to determine which of the four features one should pick, one needs a concrete way of quantifying how "different" two distributions are from each other: The larger the difference, the easier it will be to identify the species. One possible candidate for such a difference is the so-called *Kullback–Leibler divergence* $D_{KL}(P \parallel Q)$, which can be thought of as denoting how much information is lost when one goes from a "true" probability density $P$ to an approximation $Q$. We can reappropriate this as a distance-measure, since the information loss will be small for overlapping distributions and large otherwise. Unlike what is required for a distance-measure, the KL-divergence is however not symmetric,
+
+$$ D_{KL}(P \parallel Q) = \int_{-\infty}^{+\infty} p(x) \\, ln \left( \frac{p(x)}{q(x)}  \right) \\: .$$
+
+We can symmetrize our approach by simply taking the sum,
+
+$$ D(P,Q) = D_{KL}(P \parallel Q) + D_{KL}(Q \parallel P) \\: .  $$
+
+Next, we need to assign a probability distribution to the features. Based on the histograms in Fig. 4, we assume that the individual features are following a normal distribution $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$, where $I_i$ denotes a given iris species, $I_i \in \\{ \text{setosa, versicolor, virginica} \\}$. However, we also need to take into account the measurement error of our data: While the error is not directly specified, the measurements are only given up to one digit of precicion. We therefor assume that if for example the data denotes a petal width of 1.4 cm, that the "true" petal width lies somewhere within the range of 1.35 cm to 1.45 cm. For the likelihoods, this yields:
+
+$$ P[ Z = z | I_i ] = \int_{z-0.05}^{z+0.05} f(x|\mu_{I_i},\sigma_{I_i}) dx \\: , $$
+
+where $Z$ represents one of the four features taking on the value $z$ and where $f(x|\mu_{I_i},\sigma_{I_i})$ is the probability density function of $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$.
+
+</p>
 
 ## Determining the Posterior Distribution for a Single Variable
 
 <p align="justify"> 
-Based on the histograms in Fig. 4, we assume that the petal widths $pw$ are following a normal distribution $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$, where $I_i$ denotes a given iris species, $I_i \in \{ \text{setosa, versicolor, virginica} \}$. However, we also need to take into account the measurement error of our data: While the error is not directly specified, the petal widths are given up to one digit of precicion. We therefor assume for the likelihoods:
-
-$$ P[ pw = PW | I_i ] = \int_{PW-0.05}^{PW+0.05} f(x|\mu_{I_i},\sigma_{I_i}) dx $$
-
-where $f(x|\mu_{I_i},\sigma_{I_i})$ is the probability density function of $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$. The resulting Likelihood distribution can be seen in Fig. 5.
   
 </p>
 
-wip
+tba

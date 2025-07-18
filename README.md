@@ -165,13 +165,30 @@ As discussed in the previous section, we will now examine the petal width more c
 So far, we can conclude that by only measuring the petal width, we are for the most part able to identify the species of an iris reasonably well. Only when we find an iris with a petal width between 1.6 cm and 1.7 cm do we encounter some larger uncertainties as to whether we have found a versicolor or a virginica.
 </p>
 
-## Correlation: Is it Worth Measuring Two Features?
+## Correlation: Is it Worth Measuring more than One Feature?
 
 <p align="justify"> 
 
+In the previous section, it was found that for petal widths between 1.6 cm and 1.7 cm, the species becomes uncertain. To remedy this, the first thought would naturally be to measure an additional feature alongside the petal width to clear things up. However, when measuring more than one feature at once, one must also take the correlation into consideration: The width of the petals will for example naturally scale up alongside its length, making it in a sense redundant to measure both. To this end, Fig. 8 displays the correlation plots between the petal width and the other three features. Unfortunately for us, the correlation appears rather strong between all of them.
+
 </p>
 
-tba
+<figure>
+  <p align="center">
+  <img src="/Images/05CorrelationPW.png" width="500"/>
+  </p>
+  <figcaption>
+    <p align="center">
+    Fig. 8: Correlation Plot between the Petal Width and the other three features.
+    </p>
+  </figcaption>
+</figure>
+
+<p align="justify"> 
+
+What's more, as evident by the likelihoods in Fig. 5, the sepal length and width is virtually useless when it comes to differentiating between versicolor and virginica, even if they were completely independent from the sepal width. This only leaves us with the sepal length, which is naturally strongly correlated with the sepal width. As such, we conclude that measuring any other of the features provided by the data will provide us with little to no additional information and is not worth the hassle.
+
+</p>
 
 ## Determining the Species using both the Petal Width and Petal Length
 

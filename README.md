@@ -32,7 +32,7 @@ _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the Amer
   <figcaption>
     <p align="center">
     Fig. 2: Iris Versicolor.<br />
-    By No machine-readable author provided. Dlanglois assumed (based on copyright claims). - No machine-readable source provided. <br />
+    By No machine-readable author provided. Dlanglois assumed (based on copyright claims). - No machine-readable source provided.
     Own work assumed (based on copyright claims)., CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=248095 (15.07.2025)
     </p>
   </figcaption>
@@ -45,7 +45,7 @@ _Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the Amer
   <figcaption>
     <p align="center">
     Fig. 3: Iris Virginica.<br />
-    By Frank Mayfield - originally posted to Flickr as Iris virginica shrevei BLUE FLAG, CC BY-SA 2.0,<br />
+    By Frank Mayfield - originally posted to Flickr as Iris virginica shrevei BLUE FLAG, CC BY-SA 2.0,
     https://commons.wikimedia.org/w/index.php?curid=9805580 (15.07.2025)
     </p>
   </figcaption>
@@ -156,7 +156,7 @@ As discussed in the previous section, we will now examine the petal width more c
   </p>
   <figcaption>
     <p align="center">
-    Fig. 6: Posterior probability distributions for the petal width. The dots represent the actual values that can be measured.
+    Fig. 6: Posterior probability distributions for the petal width. The dots are in steps of 0.1 cm and represent the actual values that can be measured.
     </p>
   </figcaption>
 </figure>

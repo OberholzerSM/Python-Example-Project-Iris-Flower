@@ -142,13 +142,11 @@ We can now determine our posterior probabilities using the likelihoods, as displ
 
 <p align="justify"> 
 
-As discussed in the previous section, we will now examine the petal widths more closely, shown in Fig. 6. We have two intersections and hence two regions where we might struggle with identifying the iris. 
+As discussed in the previous section, we will now examine the petal width more closely, shown in Fig. 6. We have two intersections and hence two regions where we might struggle with identifying the iris. 
 
 - The first intersection is between setosa and versicolor and occurs somewhere around a petal width of ~0.65 cm. According to the data, we can however only measure petal widths up to a millimetre, meaning we do not actually have to worry about the intersection itself. At a petal width of 0.6 cm and 0.7 cm, the probability of it being either one of the irises is still at around 85%.
 
 - The second intersection happens between versicolor and virginica at a petal width of around ~1.65 cm. This time, it proves to be much more of a problem, as at 1.6 cm and 1.7 cm the probability of having found either iris drops to only around 65%, meaning that confusing a versicolor for a virginica with those petal widths or vice versa is somewhat likely to happen.
-
-So far, we can conclude that by only measuring the petal width, we are for the most part able to identify the species of an iris reasonably well. Only when we find an iris with a petal width between 1.6 cm and 1.7 cm do we encounter some larger uncertainties as to whether we have found a versicolor or a virginica.
 
 </p>
 
@@ -162,6 +160,10 @@ So far, we can conclude that by only measuring the petal width, we are for the m
     </p>
   </figcaption>
 </figure>
+
+<p align="justify"> 
+So far, we can conclude that by only measuring the petal width, we are for the most part able to identify the species of an iris reasonably well. Only when we find an iris with a petal width between 1.6 cm and 1.7 cm do we encounter some larger uncertainties as to whether we have found a versicolor or a virginica.
+</p>
 
 ## Correlation: Is it Worth Measuring Two Features?
 

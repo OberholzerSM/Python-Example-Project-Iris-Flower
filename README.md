@@ -82,7 +82,7 @@ Furthermore, for two normal distributions the KL-divergence takes on the form,
 
 $$ D_{KL}(\mathcal{N}_1 \parallel \mathcal{N}_2) = ln\\left(\frac{\sigma_2}{\sigma_1}\\right) + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2 \sigma_2^2} - \frac{1}{2} \\: . $$
 
-In order to use the KL-divergence, we need to assign a probability distribution to the features. Based on the histograms in Fig. 4, we assume that the individual features are following a normal distribution $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$, where $I_i$ denotes a given iris species, $I_i \in \\{ \text{setosa, versicolor, virginica} \\}$, and where $\mu_{I_i}$ and $\sigma_{I_i}$ can be guessed by simply taking the mean value resp. the standard deviation. However, we also need to take into account the measurement error of our data: While the error is not directly specified, the measurements are only given up to one digit of precicion. We therefor assume that if for example the data denotes a petal width of 1.4 cm, that the "true" petal width lies somewhere within the range of 1.35 cm to 1.45 cm. For the likelihoods, this yields:
+In order to use the KL-divergence, we need to assign a probability distribution to the features. Based on the histograms in Fig. 4, we assume that the individual features are following a normal distribution $\mathcal{N}(\mu_{I_i},\sigma_{I_i})$, where $I_i$ denotes a given iris species, $I_i \in \\{ \text{setosa, versicolor, virginica} \\}$, and where $\mu_{I_i}$ and $\sigma_{I_i}$ can be guessed by simply taking the mean value resp. the standard deviation. However, we also need to take into account the measurement error of our data: While the error is not directly specified, the measurements are only given up to one digit of precision. We therefor assume that if for example the data denotes a petal width of 1.4 cm, that the "true" petal width lies somewhere within the range of 1.35 cm to 1.45 cm. For the likelihoods, this yields:
 
 $$ P[ Z = z | I_i ] = \int_{z-0.05}^{z+0.05} f(x|\mu_{I_i},\sigma_{I_i}) dx \\: , $$
 
@@ -106,7 +106,7 @@ The resulting likelihood distributions are shown in Fig. 5. As can be seen, they
 </figure>
 
 <p align="justify"> 
-We can now determine the distance between the different likelihood distributions, summarized in the table below. As expected, for the sepal length and width the distances are rather small, making them unsuited for identifying the iris species. The petal length is optimal for differentiating between a setosa and the other two species, while the petal width is best suited for differentiating between a versicolor and a virginica. Since the distance between the versicolor and virginica distributions are always unfortunately small for all features, the major difficulty will always be to differeniate these two species. For setosa on the other hand, the distance to the other species for both the petal length and width is rather large, making it easy to identify either way. Hence, if one only wishes to measure a single feature per flower, the petal width should be chosen in order to best identify the species.
+We can now determine the distance between the different likelihood distributions, summarized in the table below. As expected, for the sepal length and width the distances are rather small, making them unsuited for identifying the iris species. The petal length is optimal for differentiating between a setosa and the other two species, while the petal width is best suited for differentiating between a versicolor and a virginica. Since the distance between the versicolor and virginica distributions are always unfortunately small for all features, the major difficulty will always be to differentiate these two species. For setosa on the other hand, the distance to the other species for both the petal length and width is rather large, making it easy to identify either way. Hence, if one only wishes to measure a single feature per flower, the petal width should be chosen in order to best identify the species.
 </p>
 
 | Iris                  | Sepal Length  |  Sepal Width  |  Petal Length  |  Petal Width   |
@@ -123,9 +123,9 @@ So far, we have determined the likelihood distributions $P[ Z = z | I_i ]$, whic
 
 $$ P[I_i | Z=z] = \frac{ \pi(I_i) \\, P[ Z = z | I_i ] }{ \sum_{i=1}^3 \pi(I_i) \\, P[ Z = z | I_i ] } \\: .$$
 
-$\pi(I_i)$ is the so-called prior probability and, as the name suggests, denotes our "prior knowledge" of having found a given iris species without having taken any measurements. In this instance, the prior corresponds to the relative frequency of the iris species: If we would for example know that 99% of all irises are setosa, then we could more or less assume any iris we find to be a setosa unless our measuremnts were to strongly suggest otherwise. The dataset provided to us does not list the frequency of the different iris species and each species of iris has the same amount of measurements assigned to it. We hence will perhaps naively assume that the three iris species appear with the same frequency, so that $\pi(I_i) = \frac{1}{3}$. Conviniently, this means that the prior will cancel out of the formula for the posterior, so that we can disregard it from now on.
+$\pi(I_i)$ is the so-called prior probability and, as the name suggests, denotes our "prior knowledge" of having found a given iris species without having taken any measurements. In this instance, the prior corresponds to the relative frequency of the iris species: If we would for example know that 99% of all irises are setosa, then we could more or less assume any iris we find to be a setosa unless our measurements were to strongly suggest otherwise. The dataset provided to us does not list the frequency of the different iris species and each species of iris has the same amount of measurements assigned to it. We hence will perhaps naively assume that the three iris species appear with the same frequency, so that $\pi(I_i) = \frac{1}{3}$. Conveniently, this means that the prior will cancel out of the formula for the posterior, so that we can disregard it from now on.
 
-We can now determine our posterior probabilities using the likelihoods, as displayed in Fig. 5. For the sepal length and width, the posteriors of the three irises intersect frequently and have little distance between them. At each intersection, the probabilities of having found one species of iris becomes the exact same as having found the other species of iris, making identification impossible. For the petal length and width on the other hand, only two such intersections occure.
+We can now determine our posterior probabilities using the likelihoods, as displayed in Fig. 5. For the sepal length and width, the posteriors of the three irises intersect frequently and have little distance between them. At each intersection, the probabilities of having found one species of iris becomes the exact same as having found the other species of iris, making identification impossible. For the petal length and width on the other hand, only two such intersections occur.
 
 </p>
 
@@ -194,14 +194,84 @@ What's more, as evident by the likelihoods in Fig. 5, the sepal length and width
 
 <p align="justify"> 
 
+For the sake of exercise, we can ignore our previous warning and see what changes if we measure two features instead of just one. In addition to the petal width $PW$, we will now also include the petal length $PL$ in our model. Both features are again assumed to follow along a normal distribution and to have a precision of up to a millimetre. However, this time around we also need to take into account the correlation between the two features. In practice, this means that the likelihood will take on the form of a multivariate normal distribution:
+
+```math
+P[ PL = pl, PW = pw | I_i ] = \int_{pl-0.05}^{pl+0.05} \int_{pw-0.05}^{pw+0.05} f(x,y | \vec{\mu}_{I_i}, \Sigma_{I_i}) \\, dx \\, dy
+```
+
+where $f\left(x,y | \vec{\mu}, \Sigma\right)$ is the PDF of the bivariate normal distribution, $\vec{\mu}$ is the vector of expected values and $\Sigma$ is the correlation matrix. Again, we can determine the likelihoods with the help of the CDF function,
+
+```math
+P[ PL = pl, PW = pw | I_i ] = CDF(pl+0.05, pw+0.05) + CDF(pl-0.05, pw-0.05) - CDF(pl+0.05, pw-0.05) - CDF(pl-0.05, pw+0.05) .
+```
+
+Note however that the more features we include into our model, the larger the risk of numerical errors occurring in regions of small probabilities due to underflow. In particular, the previous formula may yield negative values for the likelihood, which is logically nonsensical. In such cases, it should be simply set to zero.
+
+As previously, we can calculate the posterior probabilities using Bayes' theorem (again assuming a uniform prior),
+
+```math
+P[I_i | PL = pl, PW = pw] = \frac{ P[ PL = pl, PW = pw | I_i ] }{ \sum_{i=1}^3 P[ PL = pl, PW = pw | I_i ] } \\: .
+```
+
+Here too do we need to tread carefully as we venture into regions of small probability, since the normalization factor may yield numerically zero.
+
+The resulting posterior is now a function that both depends on the petal length and petal width. As such, it is best displayed as a heatmap as show in Fig. 9. Both setosa and versicolor occupy a particular region in state-space. Interestingly enough, virginica appears to be used as a sort of "default option" everywhere else. One can also see some strips in the region with high petal widths and low petal lengths. Note that these regions have no associated data and as such very low likelihood, meaning that we can interpret those as simply numerical artifacts.
+
 </p>
 
-tba
+
+<figure>
+  <p align="center">
+  <img src="/Images/06PosteriorPLPWHeatmap.png" width="500"/>
+  </p>
+  <figcaption>
+    <p align="center">
+    Fig. 9: Heatmap of the Posterior for the Petal Length and Petal Width. Regions of high probability are marked by brighter colours.
+    </p>
+  </figcaption>
+</figure>
+
+<p align="justify"> 
+
+In a previous section, we ran into the problem that there was an ambiguity of whether one has found a versicolor or a virginica if one has measured a petal width of 1.6 cm or 1.7 cm. To see whether we have improved our situation, we can look at a "slice" of the heatmap, shown in Fig. 10 and Fig. 11. To better see if the odds have indeed been improved, the old posterior of the petal width is shown as a dashed line.
+
+- For a petal width of 1.6 cm, we appear to have overall improved our ability to distinguish between versicolor and virginica. However, between a petal length of ~3.5cm - 4cm and ~5cm - 5.5 cm, we have introduced even more uncertainty into our system. Unfortunately, those regions have a very high likelihood to appear in our measurements, meaning that outside of the slice between 4cm - 5cm, measuring the petal length has done us little favour.
+
+- For a petal width of 1.7 cm, the situation looks even more grim. Here, our ability to identify the species has decreased within a range of roughly ~4.2 cm - 5.2 cm, which again correspond to regions of high likelihood. While our model defaults to virginica for very small and large petal lengths, seemingly increasing our ability to reliable identify the iris, one should note that these regions have a virtually zero chance of actually being measured.
+
+In conclusion, we can say that measuring the petal length in addition to the petal width does not really help in distinguishing versicolor and virginica.
+
+</p>
+
+<figure>
+  <p align="center">
+  <img src="/Images/07PosteriorPLPW16.png" width="500"/>
+  </p>
+  <figcaption>
+    <p align="center">
+    Fig. 10: Posterior for the Petal Length and a Petal Width of 1.6 cm. The dashed lines represent the old posterior probability for a petal width of 1.6 cm without considering the petal length.
+    </p>
+  </figcaption>
+</figure>
+
+
+<figure>
+  <p align="center">
+  <img src="/Images/08PosteriorPLPW17.png" width="500"/>
+  </p>
+  <figcaption>
+    <p align="center">
+    Fig. 11: Posterior for the Petal Length and a Petal Width of 1.7 cm. The dashed lines represent the old posterior probability for a petal width of 1.7 cm without considering the petal length.
+    </p>
+  </figcaption>
+</figure>
+
 
 ## Conclusion
 
 <p align="justify"> 
 
-</p>
+By employing Bayes' theorem, we have shown that the species of an iris flower can in most cases be determined by measuring its petal width. For petal widths between 1.6 cm and 1.7 cm, a confusion between versicolor and virginica may occur. Measuring additional features provided by the dataset, such as the petal length, do not help to remedy this situation, as all provided features are strongly correlated with each other. To better help distinguishing between the different iris species, an additional less correlated feature, such as the colour and shade of the flower, would be needed.
 
-tba
+</p>
